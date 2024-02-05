@@ -22,3 +22,15 @@ npx tsc --init --outDir dist/ --rootDir src
 Run project
 
 npm run dev
+
+=========================================================
+
+Express.js
+
+npm i express
+
+=========================================================
+
+Solve "Could not find a declaration for module 'express'". This command installs strict type.
+
+npm i --save-dev @types/express
