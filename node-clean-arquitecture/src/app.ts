@@ -1,3 +1,4 @@
+import { envs } from "./config";
 import { Server } from "./presentation/server";
 
 (() => {
@@ -11,6 +12,6 @@ async function main() {
     console.log('console.log from main function');
 
     new Server({
-        port: 3000
+        port: envs.PORT,
     }).start();
 }

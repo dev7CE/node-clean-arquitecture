@@ -34,3 +34,10 @@ npm i express
 Solve "Could not find a declaration for module 'express'". This command installs strict type.
 
 npm i --save-dev @types/express
+
+=========================================================
+
+[dotenv]: Load enviroment variables from .env file. Since version Node 20 is not required.
+[env-var]: get and transform enviroment variables.  
+
+npm i dotenv env-var
