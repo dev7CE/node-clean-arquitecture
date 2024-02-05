@@ -3,9 +3,11 @@ This project has below directory structure:
 node-clear-arquitecture/
 ├─ src/
 │  ├─ domain/
+│  │  ├─ entities/
 │  ├─ infrastructure/
 │  ├─ presentation/
 
 - Presentation: closest layer for user API consumption, examples of posible proyects would be: Express.js, Fastify... any other web framework.
 - Domain: contains application rules, such as Use Cases, Adapters, Datasources, How Repositories. It is recommended that any code located in this layer has no external dependencies.
+  + Entities: Piece of data which has strong similarity in comparation to Database objects, but are not linked each other. 
 - Infrastructure: intermedial layer located between presentation and domain layers. This layer is responsible for implement Adapters, Datasources and Repositories from domain layer, it also uses Mappers.
