@@ -10,5 +10,7 @@ async function main() {
 
     console.log('console.log from main function');
 
-    new Server().start();
+    new Server({
+        port: 3000
+    }).start();
 }
