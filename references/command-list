@@ -1,0 +1,24 @@
+Create package.json dependencies
+
+npm init -y
+
+=========================================================
+
+Install TypeScript with his dependences:
+- [@types/node]: let know TypeScript we are working on Node project
+- [rimraf]: Allow delete of distribution folder or any other folder, in recursively way
+- [ts-node-dev]: Similar to Nodemon (command-line tool), required for hot reload feature
+
+npm i -D typescript @types/node ts-node-dev rimraf
+
+=========================================================
+
+Create configuration file for TypeScript
+
+npx tsc --init --outDir dist/ --rootDir src
+
+=========================================================
+
+Run project
+
+npm run dev
