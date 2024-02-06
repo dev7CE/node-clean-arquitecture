@@ -8,6 +8,8 @@ node-clear-arquitecture/
 │  │  ├─ entities/
 │  │  ├─ repositories/
 │  ├─ infrastructure/
+│  │  ├─ datasources/
+│  │  ├─ repositories/
 │  ├─ presentation/
 
 - Presentation: closest layer for user API consumption, examples of posible proyects would be: Express.js, Fastify... any other web framework.
@@ -17,3 +19,5 @@ node-clear-arquitecture/
   + Datasources: business rules for retrieve data. They're abstractions only.
   + Repositories: establish communication with Datasources. They're abstractions only.
 - Infrastructure: intermedial layer located between presentation and domain layers. This layer is responsible for implement Adapters, Datasources and Repositories from domain layer, it also uses Mappers.
+  + datasources: datasource implementation.
+  + repositories: repositories implementation.
