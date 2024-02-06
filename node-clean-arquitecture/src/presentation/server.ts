@@ -21,6 +21,12 @@ export class Server {
     }
 
     async start() {
+        // Use middlewares
+        // Accept json body into request
+        this.app.use(express.json());
+        // (Optional) Accept URL Form Encoded (x-www-form-urlencoded)
+        this.app.use(express.urlencoded({ extended : true }));
+
         // Use defined routes
         this.app.use(this.routes);
 
