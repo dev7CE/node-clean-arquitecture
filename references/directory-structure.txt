@@ -2,6 +2,8 @@ This project has below directory structure:
 
 node-clear-arquitecture/
 ├─ src/
+│  ├─ data/
+│  │  ├─ mongodb/
 │  ├─ domain/
 │  │  ├─ datasources/
 │  │  ├─ dtos/
@@ -21,3 +23,5 @@ node-clear-arquitecture/
 - Infrastructure: intermedial layer located between presentation and domain layers. This layer is responsible for implement Adapters, Datasources and Repositories from domain layer, it also uses Mappers.
   + datasources: datasource implementation.
   + repositories: repositories implementation.
+- Data: contains files for databases, such as connection, models... among other resources. This folder may contain subfolders based on databases required.
+  + mongodb: connection with Mongo DB instance.

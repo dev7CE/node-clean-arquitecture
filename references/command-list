@@ -49,3 +49,9 @@ Create Mongo DB Docker Image using configuration file
 Command must be runned on file docker-compose.yml directory
 
 docker compose up -d
+
+=========================================================
+
+Install ORM [mongoose] library
+
+npm i mongoose
