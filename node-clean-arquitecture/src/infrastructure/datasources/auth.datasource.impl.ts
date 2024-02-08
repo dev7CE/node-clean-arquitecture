@@ -2,6 +2,7 @@
 // like mongo, mysql, oracle... the file name can be 
 // prefixed with Database name, 
 // such as mongo.auth.datasource.impl
+import { UserModel } from "../../data/mongodb";
 import { AuthDatasource, CustomError, RegisterUserDto, UserEntity } from "../../domain";
 
 // In the other hand 
@@ -15,18 +16,27 @@ export class AuthDatasourceImpl implements AuthDatasource {
             // 2. Password Hash
             // 3. Map response to User Entity
 
-            // Example of throwing Custom Error
-            if (email === 'email1@domai.com') {
+            const exists = await UserModel.findOne({ email });
+            
+            if (exists) {
                 throw CustomError.badRequest('Email already exists');
             }
 
-            // Example of returning User Entity
+            const user = await UserModel.create({
+                name: name,
+                email: email,
+                password: password,
+            });
+
+            await user.save();
+
+            // TODO: map response
             return new UserEntity(
-                '1',
+                user.id,
                 name,
                 email,
                 password,
-                ['ADMIN_ROLE'],
+                user.roles,
             );
         } catch (error) {
             if(error instanceof CustomError) {
