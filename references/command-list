@@ -55,3 +55,16 @@ docker compose up -d
 Install ORM [mongoose] library
 
 npm i mongoose
+
+=========================================================
+
+Install bcryptjs. A bcrypt (password-hashing function) in JavaScript
+
+npm i bcryptjs
+
+
+=========================================================
+
+Solve "Could not find a declaration for module 'bcryptjs'". This command installs strict type.
+
+npm i --save-dev @types/bcryptjs
