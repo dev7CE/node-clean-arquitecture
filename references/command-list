@@ -68,3 +68,15 @@ npm i bcryptjs
 Solve "Could not find a declaration for module 'bcryptjs'". This command installs strict type.
 
 npm i --save-dev @types/bcryptjs
+
+=========================================================
+
+Install a Json Web Token implementation library
+
+npm i jsonwebtoken
+
+=========================================================
+
+Solve "Could not find a declaration for module 'jsonwebtoken'". This command installs strict type.
+
+npm i --save-dev @types/jsonwebtoken
