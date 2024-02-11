@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { AuthRepository, CustomError, RegisterUserDto } from '../../domain';
 import { JwtAdapter } from '../../config';
+import { UserModel } from '../../data/mongodb';
 
 export class AuthController {
     //DI
@@ -40,5 +41,11 @@ export class AuthController {
 
     loginUser = (req: Request, res: Response) => {
         res.json('POST Login');
+    }
+
+    getUsers = (req: Request, res: Response) => {
+        UserModel.find()
+            .then(users => res.json(users))
+            .catch(() => res.status(500).json({ error: 'Internal server error'}));
     }
 };
