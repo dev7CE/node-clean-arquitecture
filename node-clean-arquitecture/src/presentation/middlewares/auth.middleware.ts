@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { JwtAdapter } from "../../config";
 
 export class AuthMiddleware {
     static validateJWT = async (req: Request, res: Response, next: NextFunction) => {
@@ -17,9 +18,14 @@ export class AuthMiddleware {
         const token = authorization.split(' ').at(1) || '';
 
         try {
-            // TODO: Get payload from JwtAdapter
+            const payload = await JwtAdapter.validateToken(token);
 
-            console.log(token);
+            if (!payload) {
+                return res.status(401)
+                    .json({ error: 'Invalid Bearer token'});
+            }
+
+            console.log(payload);
 
             next();
         } catch (error) {

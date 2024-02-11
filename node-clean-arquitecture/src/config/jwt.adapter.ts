@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { resolve } from 'path';
 
 export class JwtAdapter {
     static async generateToken(payload: Object, duration: string = '2h'): Promise<string|null> {
@@ -10,6 +11,18 @@ export class JwtAdapter {
                 }
 
                 resolve(token!);
+            });
+        });
+    }
+
+    static async validateToken(token: string): Promise<string | jwt.JwtPayload | undefined> {
+        return new Promise( (resolve) => {
+            jwt.verify(token, 'SEED', (err, decoded) => {
+                if (err) {
+                    return resolve(undefined);
+                }
+
+                resolve(decoded);
             });
         });
     }
