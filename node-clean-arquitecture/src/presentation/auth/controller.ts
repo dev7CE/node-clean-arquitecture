@@ -27,6 +27,7 @@ export class AuthController {
 
         if (error) return res.status(400).json({ error });
 
+        // NOTE: Part of this logic was taken for Use Case Implementation
         this.authRepository.register(registerUserDto!)
             .then(async (user) => {
                 res.json({
