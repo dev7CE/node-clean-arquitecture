@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { JwtAdapter } from "../../config";
+import { UserModel } from "../../data/mongodb";
 
 export class AuthMiddleware {
     static validateJWT = async (req: Request, res: Response, next: NextFunction) => {
@@ -25,7 +26,13 @@ export class AuthMiddleware {
                     .json({ error: 'Invalid Bearer token'});
             }
 
-            console.log(payload);
+            // TODO: remove UserModel depency by implementing repository
+            const user = await UserModel.findById(payload.id);
+
+            if(!user) {
+                return res.status(401)
+                    .json({ error: 'Invalid Bearer token'});
+            }
 
             next();
         } catch (error) {
