@@ -33,6 +33,7 @@ export class AuthController {
     }
 
     loginUser = (req: Request, res: Response) => {
+        // TODO: implement LoginUser Use Case
         res.json('POST Login');
     }
 
