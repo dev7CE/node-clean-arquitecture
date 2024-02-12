@@ -80,3 +80,11 @@ npm i jsonwebtoken
 Solve "Could not find a declaration for module 'jsonwebtoken'". This command installs strict type.
 
 npm i --save-dev @types/jsonwebtoken
+
+=========================================================
+
+Generate random hexadecimal characters to use as private key with OpenSSL command (Mac and Linux)
+
+openssl rand -hex 32
+
+(NOTE: To use this command on Windows, use a third-party package. Some examples are Git Bash, Cygwin, or Windows Subsystem for Linux(WSL) )
