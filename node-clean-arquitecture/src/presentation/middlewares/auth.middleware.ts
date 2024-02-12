@@ -18,7 +18,7 @@ export class AuthMiddleware {
         const token = authorization.split(' ').at(1) || '';
 
         try {
-            const payload = await JwtAdapter.validateToken(token);
+            const payload = await JwtAdapter.validateToken<{ id: string }>(token);
 
             if (!payload) {
                 return res.status(401)
