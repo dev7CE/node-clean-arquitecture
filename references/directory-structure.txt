@@ -9,6 +9,7 @@ node-clear-arquitecture/
 │  │  ├─ dtos/
 │  │  ├─ entities/
 │  │  ├─ repositories/
+│  │  ├─ use-cases/
 │  ├─ infrastructure/
 │  │  ├─ datasources/
 │  │  ├─ mappers/
@@ -21,6 +22,7 @@ node-clear-arquitecture/
   + DTOs (Data Transfer Objects): Carries data between processes. They dont have any business logic 
   + Datasources: business rules for retrieve data. They're abstractions only.
   + Repositories: establish communication with Datasources. They're abstractions only.
+  + Use Cases: implementation based on use cases. This folder has several subfolders based on app modules.
 - Infrastructure: intermedial layer located between presentation and domain layers. This layer is responsible for implement Adapters, Datasources and Repositories from domain layer, it also uses Mappers.
   + datasources: datasource implementation.
   + repositories: repositories implementation.
