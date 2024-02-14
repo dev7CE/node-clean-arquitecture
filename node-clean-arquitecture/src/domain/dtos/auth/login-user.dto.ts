@@ -1,10 +1,19 @@
 export class LoginUserDto {
-    // Initial properties required
     private constructor(
         public email: string,
         public password: string,
     ) 
     {}
 
-    // TODO: implement create() method with validation 
+    static create(object: {[key: string]: any }): [string?, LoginUserDto?] {
+        const { email, password } = object;
+
+        if (!email) return ['Missing email'];
+        if (!password) return ['Missing password'];
+
+        return [
+            undefined,
+            new LoginUserDto(email.toLowerCase(), password)
+        ];
+    }
 }

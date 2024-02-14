@@ -4,7 +4,7 @@
 // such as mongo.auth.datasource.impl
 import { BcryptAdapter } from "../../config";
 import { UserModel } from "../../data/mongodb";
-import { AuthDatasource, CustomError, RegisterUserDto, UserEntity } from "../../domain";
+import { AuthDatasource, CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../../domain";
 import { UserMapper } from "../mappers/user.mapper";
 
 type HashFunction =  (password: string) => string;
@@ -42,6 +42,34 @@ export class AuthDatasourceImpl implements AuthDatasource {
             await user.save();
 
             return UserMapper.userEntityFromObject(user);
+        } catch (error) {
+            if(error instanceof CustomError) {
+                throw error;
+            }
+
+            throw CustomError.internalServerError();
+        }
+    }
+
+    async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
+        const { email, password } = loginUserDto;
+
+        try {
+            // 1. Find by email
+            // 2. Compare Password
+            // 3. Map response to User Entity
+
+            const userFound = await UserModel.findOne({ email });
+            
+            if (!userFound) {
+                throw CustomError.notFound('Did not match any user with providen credentials');
+            }
+
+            if(!this.comparePassword(password, userFound.password)) {
+                throw CustomError.notFound('Did not match any user with providen credentials');
+            }
+
+            return UserMapper.userEntityFromObject(userFound);
         } catch (error) {
             if(error instanceof CustomError) {
                 throw error;
