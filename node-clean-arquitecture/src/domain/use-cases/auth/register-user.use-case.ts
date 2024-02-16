@@ -1,3 +1,4 @@
+import { IUser } from "../..";
 import { JwtAdapter } from "../../../config";
 import { RegisterUserDto } from "../../dtos/auth/register-user-dto";
 import { CustomError } from "../../errors/custom.error";
@@ -5,15 +6,6 @@ import { AuthRepository } from "../../repositories/auth.repository";
 
 interface RegisterUserUseCase {
     execute(registerUserDto: RegisterUserDto): Promise<any>
-}
-
-interface UserToken {
-    token: string;
-    user: {
-        id: string;
-        name: string;
-        email: string;
-    };
 }
 
 type SignToken = (payload: Object, duration?: string) => Promise<string | null>
@@ -24,7 +16,7 @@ export class RegisterUser implements RegisterUserUseCase {
         private readonly signToken: SignToken = JwtAdapter.generateToken
     ){}
 
-    async execute(registerUserDto: RegisterUserDto): Promise<UserToken> {
+    async execute(registerUserDto: RegisterUserDto): Promise<IUser> {
 
         const user = await this.authRepository.register(registerUserDto);
         const token = await this.signToken({ id: user.id }, '2h');

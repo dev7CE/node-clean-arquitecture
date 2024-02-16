@@ -4,7 +4,7 @@
 // such as mongo.auth.datasource.impl
 import { BcryptAdapter } from "../../config";
 import { UserModel } from "../../data/mongodb";
-import { AuthDatasource, CustomError, RegisterUserDto, UserEntity } from "../../domain";
+import { AuthDatasource, CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../../domain";
 import { UserMapper } from "../mappers/user.mapper";
 
 type HashFunction =  (password: string) => string;
@@ -16,6 +16,36 @@ export class AuthDatasourceImpl implements AuthDatasource {
         private readonly hashPassword: HashFunction = BcryptAdapter.hash,
         private readonly comparePassword: CompareFunction = BcryptAdapter.compare,
     ){}
+
+    async login(loginUserDto: LoginUserDto): Promise<UserEntity> {
+        const { email, password } = loginUserDto;
+
+        try {
+            // 1. Find by email
+            // 2. Compare Password
+            // 3. Map response to User Entity
+
+            const userFound = await UserModel.findOne({ email });
+
+            if (!userFound) {
+                throw CustomError.badRequest('Did not match any user with providen credentials');
+            }
+
+            const passwordIsMatching = this.comparePassword(password, userFound.password);
+
+            if(!passwordIsMatching) {
+                throw CustomError.badRequest('Did not match any user with providen credentials');
+            }
+
+            return UserMapper.userEntityFromObject(userFound);
+        } catch (error) {
+            if(error instanceof CustomError) {
+                throw error;
+            }
+
+            throw CustomError.internalServerError();
+        }
+    }
 
     async register(registerUserDto: RegisterUserDto): Promise<UserEntity> {
         const { name, email, password } = registerUserDto;
