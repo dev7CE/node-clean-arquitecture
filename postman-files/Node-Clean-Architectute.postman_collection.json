@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "5f33f59b-7068-43db-8992-7574d258be1e",
+		"name": "Node Clean Architectute",
+		"description": "Small-size project for clean architecture implementation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20325983"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\":\"email@domain.com\",\r\n\t\"password\":\"AStrongPassword\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "\n### Auth Login\n\nThis endpoint allows users to log in and obtain an authentication token.\n\n#### Request Body\n- `email` (string, required): The email address of the user.\n- `password` (string, required): The password of the user.\n\n#### Response\n- Status: 200 OK\n- Content-Type: application/json\n- `user` (object): An object containing user details, including `id`, `name`, and `email`.\n- `token` (string): The authentication token obtained upon successful login.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"test10\",\r\n\t\"email\":\"email10@domain.com\",\r\n\t\"password\":\"AStrongPassword\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This POST request is used to register a new user for authentication at the specified endpoint. The request should include the user's name, email, and password in the raw request body.\n\n### Request Body\n\n- name (string, required): The name of the user.\n- email (string, required): The email address of the user.\n- password (string, required): The password for the user account.\n    \n\nUpon a successful registration, the response will have a status code of 200 and a JSON content type. The response body will contain the user's ID, name, and email, along with an authentication token.\n\n### Response Body\n\n- user (object): Contains the registered user's details including id, name, and email.\n- token (string): The authentication token generated for the registered user."
+					},
+					"response": []
+				},
+				{
+					"name": "List Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzgyYTkxNWM4Y2JmNThlMjA2YWQzMyIsImlhdCI6MTcwODMxNjg0NiwiZXhwIjoxNzA4MzI0MDQ2fQ.Z3lquWwSuQToRNa05qBJfDvUYHklYee3fqxES0-QT8k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2VlMjQ5NjExNzRlMjE5NDIxYzNmNyIsImlhdCI6MTcwODA1NzE2MSwiZXhwIjoxNzA4MDY0MzYxfQ.jl0zOC9G7ZlfJ-6XChU34ZS-pnWjBoJYsAXIxTAFV94"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/auth",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth"
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to {{url}}/auth to retrieve authentication details. The response will be in JSON format with the status code 200. An example response body is as follows:\n\n``` json\n[\n    {\n        \"_id\":\"\",\n        \"name\":\"\",\n        \"email\":\"\",\n        \"password\":\"\",\n        \"roles\":[\"\"],\n        \"__v\":0\n    }\n]\n\n ```"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL1",
+			"value": "http://localhost:3000",
+			"type": "any"
+		}
+	]
+}
