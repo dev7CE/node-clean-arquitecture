@@ -13,7 +13,7 @@ API built under Clean Architecture practices.
 * Create a copy of `docker.compose.template.yml` file and rename as `docker.compose.yml`.
     * In this file, set custom credentials and port access as you need. Let default values if you plan to use this as a demo. 
 * Create a copy of `.env.template` file and rename as `.env`. In this file change below variables if required:
-    * Exprees.js `PORT`. Default value is 3000 
+    * Express.js `PORT`. Default value is 3000 
     * Mongo Database variables:
       * `MONGO_URL` connection variable. Notice, depends on `docker.compose.yml` file configuration. 
       * `MONGO_DB_NAME` corresponds to Database name, which can be customized.
